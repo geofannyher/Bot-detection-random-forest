@@ -1,11 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bot or Not</title>
+    <title>Random Forest Classifier</title>
 </head>
 <body>
-    <h1>Bot or Not</h1>
-    <p>Username: {{ username }}</p>
-    <p>Prediction: {{ prediction }}</p>
+    <h1>Random Forest Classifier</h1>
+    <form action="{{ url_for('predict') }}" method="post">
+        <label>Kolom 1:</label>
+        <input type="text" name="kolom_1"><br>
+        <label>Kolom 2:</label>
+        <input type="text" name="kolom_2"><br>
+        <label>Kolom 3:</label>
+        <input type="text" name="kolom_3"><br>
+        <label>Kolom 4:</label>
+        <input type="text" name="kolom_4"><br>
+        <label>Kolom 5:</label>
+        <input type="text" name="kolom_4"><br>
+        <label>Kolom 6:</label>
+        <input type="text" name="kolom_5"><br>
+        <label>Kolom 7:</label>
+        <input type="text" name="kolom_6"><br>
+        <label>Kolom 8:</label>
+        <input type="text" name="kolom_7"><br>
+        <label>Kolom 9:</label>
+        <input type="text" name="kolom_8"><br>
+        <label>Kolom 10:</label>
+        <input type="text" name="kolom_9"><br>
+        <label>Kolom 11:</label>
+        <input type="text" name="kolom_10"><br>
+        <label>Kolom 12:</label>
+        <input type="text" name="kolom_12"><br>
+        <label>Kolom 13:</label>
+        <input type="text" name="kolom_13"><br>
+        <label>Kolom 14:</label>
+        <input type="text" name="kolom_14"><br>
+        <label>Kolom 15:</label>
+        <input type="text" name="kolom_15"><br>
+        <label>Kolom 16:</label>
+        <input type="text" name="kolom_16"><br>
+        <label>Kolom 17:</label>
+        <input type="text" name="kolom_17"><br>
+        <label>Kolom 18:</label>
+        <input type="text" name="kolom_18"><br>
+        <label>Kolom 19:</label>
+        <input type="text" name="kolom_19"><br>
+        <label>Kolom 12:</label>
+        <input type="text" name="kolom_20"><br>
+        <input type="submit" value="Predict">
+    </form>
+    {% if prediction_text %}
+        <p>Hasil prediksi: {{ prediction_text }}</p>
+    {% endif %}
 </body>
 </html>

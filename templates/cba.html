@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hasil Prediksi</title>
+</head>
+<body>
+	<h1>Hasil Prediksi</h1>
+	<table>
+		<tr>
+			<th>Data ke-</th>
+			<th>Fitur 1</th>
+			<th>Fitur 2</th>
+			<th>Fitur 3</th>
+			<th>Hasil Prediksi</th>
+		</tr>
+		{% for data in hasil_prediksi %}
+		<tr>
+			<td>{{ data["data_ke"] }}</td>
+			<td>{{ data["fitur1"] }}</td>
+			<td>{{ data["fitur2"] }}</td>
+			<td>{{ data["fitur3"] }}</td>
+			<td>{{ data["hasil_prediksi"] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

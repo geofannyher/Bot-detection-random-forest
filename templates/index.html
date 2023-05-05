@@ -1,32 +1,61 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Bot or Human?</title>
-  </head>
-  <body>
-    <h1>Bot or Human?</h1>
-    <form action="{{ url_for('predict') }}" method="post">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username"><br><br>
-      <input type="submit" value="Predict">
-    </form>
-    {% if error_message %}
-      <p style="color:red">{{ error_message }}</p>
-    {% endif %}
-  </body>
-</html>
+<head>
+	<title>Predict Bot Detection</title>
+</head>
+<body>
+	<h1>Predict Bot Detection</h1>
 
-<!-- result.html -->
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Bot or Human?</title>
-  </head>
-  <body>
-    <h1>Bot or Human?</h1>
-    <p>Username: {{ username }}</p>
-    <p>Prediction: {{ prediction }}</p>
-    <a href="{{ url_for('home') }}">Back</a>
-  </body>
+	<form action="{{ url_for('predict') }}" method="post">
+		<label>Session Duration (seconds):</label>
+		<input type="text" name="session_duration"><br>
+
+		<label>Pages Viewed:</label>
+		<input type="text" name="pages_viewed"><br>
+
+		<label>Unique Pages Viewed:</label>
+		<input type="text" name="unique_pages_viewed"><br>
+
+		<label>Product Categories Viewed:</label>
+		<input type="text" name="product_categories_viewed"><br>
+
+		<label>Add-to-Cart:</label>
+		<input type="text" name="add_to_cart"><br>
+
+		<label>Number of Products:</label>
+		<input type="text" name="num_of_products"><br>
+
+		<label>Check-out:</label>
+		<input type="text" name="check_out"><br>
+
+		<label>Conversion:</label>
+		<input type="text" name="conversion"><br>
+
+		<label>Bounce:</label>
+		<input type="text" name="bounce"><br>
+    <label>h:</label>
+		<input type="text" name="bounce"><br>
+    <label>s:</label>
+		<input type="text" name="bounce"><br>
+    <label>s:</label>
+		<input type="text" name="bounce"><br>
+    <label>d:</label>
+		<input type="text" name="bounce"><br>
+    <label>1:</label>
+		<input type="text" name="bounce"><br>
+    <label>we:</label>
+		<input type="text" name="bounce"><br>
+    <label>ew:</label>
+		<input type="text" name="bounce"><br>
+    <label>we:</label>
+		<input type="text" name="bounce"><br>
+
+		<input type="submit" value="Predict">
+	</form>
+
+	{% if prediction_text %}
+		<p>{{ prediction_text }}</p>
+	{% endif %}
+
+</body>
 </html>
