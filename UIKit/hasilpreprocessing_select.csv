@@ -1,0 +1,2 @@
+default_profile,favourites_count,followers_count,friends_count,id,location,statuses_count,verified,account_age_days,account_type,ratio_statuses_count_per_age,ratio_favorites_per_age,ratio_friends_per_followers,word_count,char_count,reputation,contains_bot_name,description_word_count,description_character_count,avg_word
+True,64,24,0,1015021614,True,277,False,2802,human,0.09885795860099929,0.022840827980014276,0.0,1,1,1.0,False,1,1,1.0
