@@ -19,7 +19,7 @@ X = data_baru.drop('account_type', axis=1)
 y = data_baru['account_type']
 
 # membagi data menjadi training and testing sets untuk fitur X dan label y
-X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X,y, test_size=0.1, random_state=42)
 
 data_baru.head()
 # Membuat model Random Forest Classifier menentukan 100 pohon keputusan yang akan dibangun 
@@ -48,18 +48,16 @@ accuracy = accuracy_score(y_test, y_pred)
 print("Akurasi:", accuracy)
 
 #menghitung confusion matrix berdasarkan label sebenarnya (y_test) dan hasil prediksi model (y_pred)
-cm = confusion_matrix(y_test, y_pred, labels=["bot", "human"])
+cm = confusion_matrix(y_test, y_pred)
 
-# Membuat plot confusion matrix
+# membuat plot confusion matrix
 plt.figure(figsize=(8, 6))
 sns.heatmap(cm, annot=True, fmt='g', cmap='Blues')
 plt.xlabel('Predicted')
 plt.ylabel('Actual')
-plt.xticks([0.5, 1.5], ["bot", "human"])
-plt.yticks([0.5, 1.5], ["bot", "human"])
 plt.show()
+# print(cm)
 
-# Mencetak nilai dari confusion matrix
 print("Confusion Matrix:")
 print("----------------------------------------")
 print("True Positif (TP):", cm[1, 1])

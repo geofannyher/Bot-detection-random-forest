@@ -16,13 +16,13 @@ df['Prediksi'] = prediksi
 # Menampilkan pesan berdasarkan label, prediksi, dan ID
 for index, row in df.iterrows():
     if row['account_type'] == 'bot' and row['Prediksi'] == 'human':
-        print("Akun ini ternyata manusia")
+        print("Akun ini manusia")
     elif row['account_type'] == 'human' and row['Prediksi'] == 'bot':
-        print("Akun ini ternyata bot")
+        print("Akun ini bot")
     elif row['account_type'] == 'human' and row['Prediksi'] == 'human':
-        print("Akun ini benar adalah human")
+        print("Akun ini human")
     elif row['account_type'] == 'bot' and row['Prediksi'] == 'bot':
-        print("Akun ini benar adalah bot")
+        print("Akun ini bot")
     if row['id'] == 19923515:
         print("screen_name : abc_es")
     elif row['id'] == 495716215:
@@ -33,8 +33,8 @@ for index, row in df.iterrows():
         print("screen_name : WeRaBot")
     elif row['id'] == 393483438:
         print("screen_name : ilbolly")
-    elif row['id'] == 	24651716:
-        print("screen_name : TylerJRoney")
+    elif row['id'] == 235667666:
+        print("screen_name : AlexNunez_")
     elif row['id'] == 239085423:
         print("screen_name :AAstierOff")
     elif row['id'] == 4372811421:

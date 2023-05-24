@@ -4,7 +4,9 @@ import subprocess
 import pandas as pd
 from tkinter import filedialog
 from ttkthemes import ThemedTk
+import time
 
+    
 # Fungsi untuk menghapus hasil dari tab "View Data" dan tab lainnya
 def clear_results():
     txt_preprocessing.delete('1.0', tk.END)
@@ -62,54 +64,82 @@ def browse_file():
         df = pd.read_csv(file_path)
         load_data()
 
-# Membaca data dari file CSV (contoh data)
+# Membaca 10 data dari file CSV (contoh data)
 df = pd.read_csv('datatest.csv')
 selected_data = None
 
 # Membuat GUI dengan Tkinter
-root = ThemedTk(theme="arc")  # Menggunakan tema 'arc'
+root = tk.Tk()
 root.title("Data Analysis App")
 
-style = ttk.Style()
-style.configure("Treeview", font=("Segoe UI", 10))
-style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"))
+style = ttk.Style(root)
+root.tk.call("source", "forest-light.tcl")
+style.theme_use("forest-light")
+
+frame = ttk.Frame(root)
+frame.pack(side="left", padx=10, pady=10)
+
+# style.configure("TButton",
+#                 padding=(10, 5),
+#                 width=15,
+#                 background="green",
+#                 foreground="white")
+
+# style.configure("Treeview", font=("Segoe UI", 11))
+# style.configure("Treeview.Heading", font=("Segoe UI", 11))
+
+# Mengatur lebar minimum kolom
+column_widths = {
+    "Column1": 100,
+    "Column2": 100,
+    "Column3": 120,
+    # Tambahkan kolom-kolom lain sesuai kebutuhan
+}
 
 tree = ttk.Treeview(root)
 tree["columns"] = tuple(df.columns)
 tree["show"] = "headings"
+
+# Mengatur judul kolom
 for column in df.columns:
-    tree.heading(column, text=column)
+    column_name = column
+    tree.heading(column, text=column_name)
+
+    # Mengatur lebar minimum kolom
+    tree.column(column, width=column_widths.get(column, 100))
 
 # Menambahkan scrollbar
 scrollbar = ttk.Scrollbar(root, orient="vertical", command=tree.yview)
 tree.configure(yscroll=scrollbar.set)
 scrollbar.pack(side="right", fill="y")
 
+
 # Tombol "Unggah File"
-button = ttk.Button(root, text="Unggah File", command=browse_file)
-button.pack()
+button = ttk.Button(frame, text="Unggah File", style='Accent.TButton', width=15,command=browse_file)
+button.pack(side="top",padx=5, pady=5)
 
 # Tombol untuk memuat data dengan gaya 'flat' dan warna latar belakang 'lightgray'
-load_button = ttk.Button(root, text="Muat Data", command=load_data, style="TButton")
-load_button.pack(pady=10)
+load_button = ttk.Button(frame, text="Muat Data",style='Accent.TButton', width=15,command=load_data)
+load_button.pack(side="top",padx=5, pady=5)
 
 # Tombol Preprocessing dengan gaya 'flat' dan warna latar belakang 'lightgray'
-preprocessing_button = ttk.Button(root, text="Preprocessing", command=run_preprocessing, style="TButton")
-preprocessing_button.pack(pady=10)
+preprocessing_button = ttk.Button(frame, text="Preprocessing", style='Accent.TButton',width=15,command=run_preprocessing)
+preprocessing_button.pack(side="top",padx=5, pady=5)
 
 # Tombol Model dengan gaya 'flat' dan warna latar belakang 'lightgray'
-model_button = ttk.Button(root, text="Model", command=run_model, style="TButton")
-model_button.pack(pady=10)
+model_button = ttk.Button(frame, text="Model", style='Accent.TButton',width=15,command=run_model)
+model_button.pack(side="top",padx=5, pady=5)
+
 
 # Tombol Predict dengan gaya 'flat' dan warna latar belakang 'lightgray'
-predict_button = ttk.Button(root, text="Predict", command=run_predict, style="TButton")
-predict_button.pack(pady=10)
+predict_button = ttk.Button(frame, text="Predict",style='Accent.TButton',width=15, command=run_predict)
+predict_button.pack(side="top",padx=5, pady=5)
 
 # Menampilkan Treeview
 tree.pack()
 
 # Membuat notebook untuk tab dengan gaya 'clam'
-notebook = ttk.Notebook(root, style="TNotebook")
+notebook = ttk.Notebook(root,width=1325, height=500)
 notebook.pack(pady=10)
 
 # Tab View Data dengan gaya 'TFrame'
@@ -117,7 +147,7 @@ tab_view_data = ttk.Frame(notebook, style="TFrame")
 notebook.add(tab_view_data, text="View Data")
 
 # Text area View Data dengan gaya 'TText'
-txt_view_data = tk.Text(tab_view_data, wrap="word", font=("Segoe UI", 12), bg="white", fg="black", padx=10, pady=10, width=100, height=20)
+txt_view_data = tk.Text(tab_view_data, wrap="word", font=("Segoe UI", 12), bg="white", fg="black", padx=10, pady=10, width=200, height=20)
 txt_view_data.pack(fill="both", expand=True)
 
 # Menambahkan binding saat item dipilih di Treeview
@@ -125,7 +155,7 @@ tree.bind("<<TreeviewSelect>>", show_selected_data)
 
 # Tombol Pilih Data dengan gaya 'TButton' dan warna latar belakang 'lightgray'
 button_save_data = ttk.Button(tab_view_data, text="Pilih Data", command=save_selected_data, style="TButton")
-button_save_data.pack(pady=10)
+button_save_data.pack(pady=5)
 
 # Status penyimpanan
 txt_save_status = tk.Label(tab_view_data, text="", font=("Segoe UI", 10), fg="green")
